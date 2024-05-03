@@ -3,56 +3,38 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>StartMenu</title>
+            <title>login</title>
 
             <link rel="stylesheet" type="text/css" href="web-inf/styles.css">
         </head>
         <body>
-            <?php
-                include "web-inf/menu.php";
-                include "web-inf/data.php";
-                $user = $pass = "";
-            ?>
-
             <div class='main'>
                 <h1>Saudações</h1>
 
-                <form action="" method="get">
-                    <label for="user">E-mail ou nome de usuario:<label>
+                <form action="" method="post" name="form">
+                    <label for="user">Nome de usuario:<label>
                     <br>
-                    <input type="text" name="user">
-                    <br>
-                    
-                    <label for="pass">Senha:<label>
-                    <br>
-                    <input type="text" name="pass">
+                    <input id="myInput" type="text" name="user" placeholder="digite aqui.">
                     <br><br>
-                    <input type="submit" value="Entrar" name="ok">
+
+                    <input id="myBtn" type="button" nome="submit" value="entrar" onclick="concatena()">
                 </form>
 
-                <?php
-                    if($logon_user == null && $logon_pass == null){
-                        ?>
-                            <p>Você não possui um cadastro, <a href="logon.php">clique aqui para cadastrar.<a></p>
-                        <?php
+                <script>
+                    var input = document.getElementById("myInput");
+                    input.addEventListener("keypress", function(event) {
+                        if (event.key === "Enter") {
+                            event.preventDefault();
+                            document.getElementById("myBtn").click();
+                        }
+                    });
+
+                    function concatena(){
+                        nome = document.form.user.value;
+                        window.alert("Bem Vindo(a) " + nome);
+                        window.location.href = "http://localhost/start_web/StartPage.php";
                     }
-                    else{
-                        ?>
-                            <p>Esqueceu seu cadastro? <a href="logon.php">Clique aqui para re-cadastrar.<a></p>
-                        <?php
-                    }
-                ?>
-
-                <?php
-                    try{
-                        $login_user = $user;
-                        $login_pass = $pass;
-
-
-                    }catch(exception $e){
-
-                    }
-                ?>
+                </script>
             </div>
         </body>
     </html>
